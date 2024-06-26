@@ -1,0 +1,63 @@
+<!-- dooly.html 
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dooly Access - NFC Reader Web App</title>
+  
+  <link rel="stylesheet" href="{{ url_for('static', filename='dooly.css') }}">
+</head>
+<body>
+  <div class="container">
+    <a href="door-access" class = "back-button">Back to University Doors</a>
+    <h1>Dooly Access</h1>
+    <p>Place your NFC device near the reader to access Dooly.</p>
+   
+    <form id="room-form" method="POST">
+      <label for="room-number">Enter Room Number:</label>
+      <input type="text" id="room-number" name="room_number" required>
+      <button type="submit">Check Access</button>
+    </form>
+    
+    <div id="door-access-status">
+      {{ access_status }}
+    </div>
+  </div>
+</body>
+</html>
+
+ dooly.html -->
+
+
+ <!DOCTYPE html>
+ <html lang="en">
+ <head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Dooly Access - NFC Reader Web App</title>
+   <!-- Link to the static CSS file -->
+   <link rel="stylesheet" href="{{ url_for('static', filename='dooly.css') }}">
+ </head>
+ <body>
+   <div class="container">
+     <a href="door-access" class="back-button">Back to University Doors</a>
+     <h1>Dooly Memorial Access</h1>
+     <p>Choose a Room Number:</p>
+     <!-- Buttons for room numbers -->
+     <form id="room-form" method="POST">
+       <button type="submit" name="room_number" value="100">Room 100</button>
+       <button type="submit" name="room_number" value="101">Room 101</button>
+       <button type="submit" name="room_number" value="102">Room 102</button>
+       <button type="submit" name="room_number" value="200">Room 200</button>
+       <button type="submit" name="room_number" value="201">Room 201</button>
+     </form>
+     <!-- Status message will be displayed here -->
+     <div id="door-access-status">
+       {{ access_status }}
+     </div>
+   </div>
+ </body>
+ </html>
+ 

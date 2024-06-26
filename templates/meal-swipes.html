@@ -1,0 +1,121 @@
+<!-- meal-swipes.html -->
+<!--
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Meal Swipes - NFC Reader Web App</title>
+  <link rel="stylesheet" href="/static/meal-swipes.css"> <
+</head>
+<body>
+  <div class="container">
+    <h1>Meal Swipes</h1>
+    <div id="meal-swipes-output">
+      <p>Meal Swipes: <span id="meal-swipes-value">{{ swipes }}</span></p>
+      <p>Guest Swipes: <span id="guest-swipes-value">{{ guest_swipes }}</span></p>
+    </div>
+    <div id="meal-swipes-buttons">
+      <a href="/" class = "back-button">Back to Home</a>
+      <form id="use-meal-swipe-form" method="POST">
+        <button type="submit" name="use-meal-swipe">Use Meal Swipe</button>
+      </form>
+      <form id="use-guest-swipe-form" method="POST">
+        <button type="submit" name="use-guest-swipe">Use Guest Swipe</button>
+      </form>
+    </div>
+  </div>
+  
+  <script>
+    function checkNFC() {
+        fetch('/check-nfc')
+            .then(response => response.json())
+            .then(data => {
+                if (data.status === 'ok') {
+                    console.log('NFC UID:', data.uid);
+                    document.getElementById('meal-swipes-value').textContent = data.swipes;
+                    document.getElementById('guest-swipes-value').textContent = data.guest_swipes;
+                    document.getElementById('pos-status').textContent = "NFC Read Successfully.";
+                } else if (data.status === 'waiting') {
+                    console.log('Waiting for NFC...');
+                    //document.getElementById('pos-status').textContent = "Please place your phone on the NFC reader.";
+                } else {
+                    console.error('NFC Error:', data.message);
+                    //document.getElementById('pos-status').textContent = "Error: " + data.message;
+                }
+            })
+            .catch(error => {
+                console.error('Fetch error:', error);
+                //document.getElementById('pos-status').textContent = "Error fetching NFC data.";
+            });
+    }
+
+    // Periodically check for NFC tag
+    setInterval(checkNFC, 1000);
+  </script>
+</body>
+</html>
+
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Meal Swipes - NFC Reader Web App</title>
+  <link rel="stylesheet" href="/static/meal-swipes.css">
+</head>
+<body>
+  <div class="container">
+    <a href="/" class="back-button">Back to Home</a>
+    <h4>User:</h4>
+      <p id="user-uid">{{ uid }}</p>
+    <h1>Meal Swipes</h1>
+    <div id="meal-swipes-output">
+      <p>Meal Swipes: <span id="meal-swipes-value">Loading...</span></p>
+      <p>Guest Swipes: <span id="guest-swipes-value">Loading...</span></p>
+    </div>
+    <div id="meal-swipes-buttons">
+      
+      <form id="use-meal-swipe-form" method="POST">
+        <button type="submit" name="use-meal-swipe">Use Meal Swipe</button>
+      </form>
+      <form id="use-guest-swipe-form" method="POST">
+        <button type="submit" name="use-guest-swipe">Use Guest Swipe</button>
+      </form>
+    </div>
+  </div>
+  
+  <!-- NFC Checking JavaScript -->
+  <script>
+    function checkMealSwipes() {
+        fetch('/check-meal-swipes')
+            .then(response => response.json())
+            .then(data => {
+                if (data.status === 'ok') {
+                    console.log('Meal Swipes:', data.swipes);
+                    console.log('Guest Swipes:', data.guest_swipes);
+                    document.getElementById('user-uid').textContent = data.uid;
+                    document.getElementById('meal-swipes-value').textContent = data.swipes;
+                    document.getElementById('guest-swipes-value').textContent = data.guest_swipes;
+                } else if (data.status === 'waiting') {
+                    console.log('Waiting for meal swipe data...');
+                    // If meal swipe data is not available yet, keep waiting
+                } else {
+                    console.error('Meal Swipes Error:', data.message);
+                    // If there's an error with meal swipe data, display error message
+                }
+            })
+            .catch(error => {
+                console.error('Fetch error:', error);
+                // If there's an error fetching meal swipe data, display error message
+            });
+    }
+
+    // Periodically check for meal swipe data
+    setInterval(checkMealSwipes, 1000);
+  </script>
+</body>
+</html>

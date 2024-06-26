@@ -1,0 +1,32 @@
+<!-- dorm.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dorm - NFC Reader Web App</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='dorm.css') }}"> <!-- Link to the CSS file for dorm selection -->
+  <style>
+    /* Center-align the buttons */
+    #dorm-access-buttons {
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Dorm Rooms</h1>
+    <div id="dorm-access-buttons">
+      <a href="/" class="back-button">Back to Home</a>
+      <a href="eaton"><button>Eaton</button></a>
+      <a href="lakeside"><button>Lakeside</button></a>
+      <a href="mahoney"><button>Mahoney</button></a>
+    </div>
+    <div id="door-access-status">
+      <!-- Status message will be displayed here -->
+    </div>
+  </div>
+</body>
+</html>
+

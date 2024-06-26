@@ -1,0 +1,25 @@
+<!-- door-access.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Door Access - NFC Reader Web App</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='door-access.css') }}"> <!-- Link to the CSS file for door access -->
+</head>
+<body>
+  <div class="container">
+    <h1>University Doors</h1>
+    <div id="door-access-buttons">
+      <a href="/" class = "back-button">Back to Home</a>
+      <a href="dooly"><button>Dooly</button></a>
+      <a href="whitten"><button>Whitten</button></a>
+      <a href="mcarthur"><button>McArthur Engineering</button></a>
+    </div>
+    <div id="door-access-status">
+      <!-- Status message will be displayed here -->
+    </div>
+  </div>
+</body>
+</html>

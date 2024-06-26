@@ -1,0 +1,44 @@
+/* dorm.css */
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .container {
+    max-width: 600px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  }
+  
+  h1 {
+    text-align: center;
+    color: #333;
+  }
+  
+  #dorm-buttons {
+    margin-top: 20px;
+    text-align: center;
+  }
+  
+  .dorm-button {
+    margin: 10px;
+  }
+  
+  .back-button {
+    position: fixed; /* Position the button relative to the viewport */
+    top: 20px; /* Distance from the top edge of the viewport */
+    left: 20px; /* Distance from the left edge of the viewport */
+    padding: 10px 20px; /* Adjust padding as needed */
+    background-color: #f0f0f0; /* Button background color */
+    border: 1px solid #ccc; /* Button border */
+    border-radius: 5px; /* Rounded corners */
+    text-decoration: none; /* Remove underline from the link */
+    color: #333; /* Button text color */
+    font-size: 14px; /* Button text size */
+  }

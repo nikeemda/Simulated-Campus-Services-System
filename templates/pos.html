@@ -1,0 +1,71 @@
+<!-- pos.html -->
+
+<!DOCTYPE html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Point of Sale - NFC Reader Web App</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='pos.css') }}">
+</head>
+<body>
+  <div class="container">
+    <h1>Dining Dollars</h1>
+    <div id="pos-form">
+      <a href="/" class="back-button">Back to Home</a>
+      <h4>User:</h4>
+      <p id="user-uid">{{ uid }}</p>
+
+      <h2>Current Dining Dollars:</h2>
+      <p id="current-dining-dollars">${{ dining_dollars }}</p>
+
+      <h2>Enter Sale Amount:</h2>
+      <form id="pos-sale-form" method="POST">
+        <label for="sale-amount">Sale Amount:</label>
+        <input type="number" id="sale-amount" name="sale-amount" required>
+        <button type="submit">Complete Sale</button>
+      </form>
+      <p id="pos-status"></p>
+    </div>
+  </div>
+
+  <!-- NFC Checking JavaScript -->
+  <script>
+    function checkNFC() {
+        fetch('/check-nfc')
+            .then(response => response.json())
+            .then(data => {
+                if (data.status === 'ok') {
+                    console.log('NFC UID:', data.uid);
+                    document.getElementById('user-uid').textContent = data.uid;
+                    document.getElementById('current-dining-dollars').textContent = "$"+data.dining_dollars+".00";
+                    document.getElementById('pos-status').textContent = "NFC Read Successfully.";
+                } else if (data.status === 'waiting') {
+                    console.log('Waiting for NFC...');
+                    //document.getElementById('pos-status').textContent = "Please place your phone on the NFC reader.";
+                } else {
+                    console.error('NFC Error:', data.message);
+                    document.getElementById('meal-swipes-value').textContent = "Error loading data.";
+                    document.getElementById('guest-swipes-value').textContent = "Error loading data.";
+                }
+            })
+            .catch(error => {
+                console.error('Fetch error:', error);
+                document.getElementById('meal-swipes-value').textContent = "Error loading data.";
+                document.getElementById('guest-swipes-value').textContent = "Error loading data.";
+            
+            });
+    }
+
+    // Periodically check for NFC tag
+    setInterval(checkNFC, 1000);
+  </script>
+</body>
+</html>
+
+
+
+
+
+

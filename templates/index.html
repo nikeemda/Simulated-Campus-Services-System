@@ -1,0 +1,24 @@
+<!-- index.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Simulated Campus Services System</title>
+  <!-- Link to the static CSS file -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='index.css') }}">
+</head>
+<body>
+  <div class="container">
+    <h1>Simulated Campus Services System</h1>
+    <div id="action-container">
+      <a href="door-access"><button>University Doors</button></a>
+      <a href="pos"><button>Dining Dollars</button></a>
+      <a href="meal-swipes"><button>Meal Swipes</button></a> <!-- New page for meal swipes -->
+      <a href="dorm"><button>Dorm</button></a> <!-- New page for dorm selection -->
+    </div>
+  </div>
+</body>
+</html>
+
